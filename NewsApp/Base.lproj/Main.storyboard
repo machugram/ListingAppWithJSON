@@ -16,35 +16,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8J2-3t-Qav">
-                                <rect key="frame" x="10" y="54" width="355" height="603"/>
+                                <rect key="frame" x="10" y="57.5" width="355" height="599.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TrB-SV-NJl">
-                                <rect key="frame" x="20" y="10" width="335" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIj-x6-P2H">
+                                <rect key="frame" x="10" y="10" width="355" height="27.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="8J2-3t-Qav" firstAttribute="top" secondItem="yIj-x6-P2H" secondAttribute="bottom" constant="20" id="0mY-7p-5kn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8J2-3t-Qav" secondAttribute="trailing" constant="10" id="1Im-NA-kZU"/>
-                            <constraint firstItem="TrB-SV-NJl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="StU-yT-ceB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yIj-x6-P2H" secondAttribute="trailing" constant="10" id="37c-BV-IOm"/>
+                            <constraint firstItem="yIj-x6-P2H" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="4Tg-M8-CgW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8J2-3t-Qav" secondAttribute="bottom" constant="10" id="YHS-q9-V5K"/>
-                            <constraint firstItem="8J2-3t-Qav" firstAttribute="top" secondItem="TrB-SV-NJl" secondAttribute="bottom" constant="10" id="c3Z-7n-cqo"/>
-                            <constraint firstItem="TrB-SV-NJl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="lkq-u4-V5y"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TrB-SV-NJl" secondAttribute="trailing" constant="20" id="wdX-Jy-5yt"/>
+                            <constraint firstItem="yIj-x6-P2H" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="iWc-0f-oR3"/>
                             <constraint firstItem="8J2-3t-Qav" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="zaU-fW-4ZU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="field" destination="TrB-SV-NJl" id="I8C-Zr-pba"/>
                         <outlet property="tableView" destination="8J2-3t-Qav" id="6eH-gS-xU9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="120.53571428571428"/>
+            <point key="canvasLocation" x="136.80000000000001" y="120.08995502248877"/>
         </scene>
     </scenes>
 </document>

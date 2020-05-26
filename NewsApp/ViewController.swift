@@ -12,64 +12,63 @@ import UIKit
 //Network Request
 //Tap a cell to view info/ details of cell
 //Custom cell.
-class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource,UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3 //news.count
+    return  5
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-//        cell.configure(with: news[indexPath.row])
+     //cell.configure(with: news[indexPath.row])
         return cell
     }
     
     
+    
     @IBOutlet weak var tableView :UITableView!
-    @IBOutlet weak var field : UITextField!
-    let news =  [News]()
+    @IBOutlet weak var label : UILabel!
+    var news =  [Article]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchNews()
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
         
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        field.delegate = self
-
     }
     
 // Field
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchNews()
-        return true
-    }
+    
     
     func searchNews(){
-        field.resignFirstResponder()
-        guard let text = field.text, !text.isEmpty else {
-            return
+    
+    let url = URL(string: "https://learnappmaking.com/ex/news/articles/Apple?secret=CHWGk3OTwgObtQxGqdLvVhwji6FsYm95oe87o3ju")!
+    let session = URLSession.shared
+    session.dataTask(with: url){
+        (data,response,error) in
+        if let response = response{
+            print(response)
         }
-        
-URLSession.shared.dataTask(with: URL(string: "https://learnappmaking.com/ex/news/articles/Apple?secret=CHWGk3OTwgObtQxGqdLvVhwji6FsYm95oe87o3ju")!,
-    completionHandler: {data, response, error in
-        guard let data = data, error == nil
-            else{
-                return
+        //var result: ArticleResult?
+        if let data = data{
+            do{
+               let json  = try JSONSerialization.jsonObject(with: data, options:[])
+                print(json)
+            }
+            catch{
+            print(error)
+            }
+//
+
         }
-                    //COnvert
-        
-        do{
-            result = try JSONDecoder().decode(news.self, from: data)
-        }
-        catch{
-            print("error")
-        }
-        
-        guard let finalResult = result else{return}
-        let news = finalResult.Search
-            }).resume()
-        }
+    }.resume()
+    }
+    
+    
     }
     
     
@@ -81,18 +80,24 @@ URLSession.shared.dataTask(with: URL(string: "https://learnappmaking.com/ex/news
         //Show news details
     }
     
-struct Search : Codable{
-    let articles:[News]
+struct ArticleResult : Codable{
+    let articles:[Article]
 }
 
+struct Article : Codable{
+let id : String
+let url : String
+var title: String
+var text: String
+var publisher: String
+var author: String
+var image : String
+var date: String
+}
 
 struct News : Codable{
-    let id : String
-    let url : String
-    var title: String
-    var text: String
-    var publisher: String
-    var author: String
-    var image : String
-    var date: String
+    let count: Int
+    let urls: String
+    let articles: [Article]
 }
+
