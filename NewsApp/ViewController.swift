@@ -14,13 +14,13 @@ import UIKit
 //Custom cell.
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return  5
+    return  3
     }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-     //cell.configure(with: news[indexPath.row])
+      //cell.configure(with: news[indexPath.row])
         return cell
     }
     
@@ -33,8 +33,8 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchNews()
-        tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
+        getNewsResult()
+        tableView.register(TableViewCell.nib(), forCellReuseIdentifier: TableViewCell.identifier)
         
         // Do any additional setup after loading the view.
         tableView.delegate = self
@@ -44,28 +44,56 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
 // Field
     
     
-    func searchNews(){
+    func getNewsResult(){
     
     let url = URL(string: "https://learnappmaking.com/ex/news/articles/Apple?secret=CHWGk3OTwgObtQxGqdLvVhwji6FsYm95oe87o3ju")!
     let session = URLSession.shared
-    session.dataTask(with: url){
-        (data,response,error) in
-        if let response = response{
-            print(response)
-        }
-        //var result: ArticleResult?
-        if let data = data{
-            do{
-               let json  = try JSONSerialization.jsonObject(with: data, options:[])
+        session.dataTask(with: url, completionHandler:{data, response, error in
+            //validation
+            guard let data = data , error == nil
+                else {
+                    print("Something went wrong")
+                    return
+            }
+            var json: News?
+            do {
+                let json  = try JSONSerialization.jsonObject(with: data, options:[])
                 print(json)
             }
-            catch{
-            print(error)
+            catch {
+                print("error: \(error)")
             }
+            guard let result = json else{
+                return
+            }
+            let entries = result.articles
+            print(entries)
+            
+            //Update user interface
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            }).resume()
+//        }){
+//        (data,response,error) in
+//        if let response = response{
+//            print(response)
+//        }
+//        var result: ArticleResult?
+//        if let data = data{
+//            do{
+//               let json  = try JSONSerialization.jsonObject(with: data, options:[])
+//                print(json)
+//            }
+//            catch{
+//            print(error)
+//            }
+//            guard let finalResult = result else {
+//               return
+//      }
+//  // Update our movies array
 //
-
-        }
-    }.resume()
+//        }
     }
     
     
@@ -80,6 +108,13 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         //Show news details
     }
     
+
+struct News : Codable{
+    let count: Int
+    let urls: String
+    let articles: [Article]
+}
+
 struct ArticleResult : Codable{
     let articles:[Article]
 }
@@ -95,9 +130,5 @@ var image : String
 var date: String
 }
 
-struct News : Codable{
-    let count: Int
-    let urls: String
-    let articles: [Article]
-}
+
 

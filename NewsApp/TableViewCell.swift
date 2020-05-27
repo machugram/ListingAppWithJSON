@@ -19,13 +19,10 @@ class TableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-       
     }
 
-    let identifier = "TableViewCell"
-     func nib()->UINib{
+   static let identifier = "TableViewCell"
+     static func nib()->UINib{
         return UINib(nibName: "TableViewCell", bundle: nil)
     }
     func configure(with model: Article){
