@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-      //cell.configure(with: news[indexPath.row])
+     //cell.configure(with: news[indexPath.row])
         return cell
     }
     
@@ -43,7 +43,6 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     
 // Field
     
-    
     func getNewsResult(){
     
     let url = URL(string: "https://learnappmaking.com/ex/news/articles/Apple?secret=CHWGk3OTwgObtQxGqdLvVhwji6FsYm95oe87o3ju")!
@@ -57,8 +56,11 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             }
             var json: News?
             do {
-                let json  = try JSONSerialization.jsonObject(with: data, options:[])
-                print(json)
+                let fetchedData = try JSONSerialization.jsonObject(with: data, options:.mutableContainers)
+                //if let count = fetchedData["count"] as? Int{print(count)}
+                print("decoded:",fetchedData)
+    
+                
             }
             catch {
                 print("error: \(error)")
@@ -66,35 +68,16 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             guard let result = json else{
                 return
             }
-            let entries = result.articles
-            print(entries)
             
             //Update user interface
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
             }).resume()
-//        }){
-//        (data,response,error) in
-//        if let response = response{
-//            print(response)
-//        }
-//        var result: ArticleResult?
-//        if let data = data{
-//            do{
-//               let json  = try JSONSerialization.jsonObject(with: data, options:[])
-//                print(json)
-//            }
-//            catch{
-//            print(error)
-//            }
-//            guard let finalResult = result else {
-//               return
-//      }
-//  // Update our movies array
 //
-//        }
     }
+    
+    
     
     
     }
@@ -111,12 +94,13 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
 
 struct News : Codable{
     let count: Int
-    let urls: String
-    let articles: [Article]
+    let urls: url
+    let articles: Article
 }
-
-struct ArticleResult : Codable{
-    let articles:[Article]
+struct url : Codable{
+    let next: String
+    let prev: String
+    let `self`: String
 }
 
 struct Article : Codable{
