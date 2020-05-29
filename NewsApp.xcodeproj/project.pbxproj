@@ -17,6 +17,7 @@
 		7B496EFE247C6FA700293742 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B496EFC247C6FA700293742 /* TableViewCell.swift */; };
 		7B496EFF247C6FA700293742 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B496EFD247C6FA700293742 /* TableViewCell.xib */; };
 		7B496F03247E91B200293742 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B496F02247E91B200293742 /* DetailViewController.swift */; };
+		7BE4508A247F1152002BC851 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BE45089247F1152002BC851 /* data.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		7B496EFC247C6FA700293742 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		7B496EFD247C6FA700293742 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		7B496F02247E91B200293742 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7BE45089247F1152002BC851 /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				7B496EFC247C6FA700293742 /* TableViewCell.swift */,
 				7B496EFD247C6FA700293742 /* TableViewCell.xib */,
 				7B496F02247E91B200293742 /* DetailViewController.swift */,
+				7BE45089247F1152002BC851 /* data.json */,
 			);
 			path = NewsApp;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				7B128A9E247AB017002D214B /* LaunchScreen.storyboard in Resources */,
 				7B496EFF247C6FA700293742 /* TableViewCell.xib in Resources */,
 				7B128A9B247AB017002D214B /* Assets.xcassets in Resources */,
+				7BE4508A247F1152002BC851 /* data.json in Resources */,
 				7B128A99247AB017002D214B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

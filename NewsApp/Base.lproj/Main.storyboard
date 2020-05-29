@@ -29,9 +29,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="News" id="P2I-e2-RWu"/>
+                    <navigationItem key="navigationItem" title="News" id="P2I-e2-RWu">
+                        <barButtonItem key="backBarButtonItem" title=" " id="D52-He-TXg"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="8J2-3t-Qav" id="6eH-gS-xU9"/>
+                        <segue destination="qeD-FM-Kfd" kind="show" identifier="showDetails" id="mzb-Yc-1zg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -56,44 +59,96 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="120.08995502248877"/>
         </scene>
-        <!--News Details-->
+        <!--Detail View Controller-->
         <scene sceneID="vPu-XY-NLq">
             <objects>
-                <viewController storyboardIdentifier="Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qeD-FM-Kfd" customClass="ReturnViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qeD-FM-Kfd" customClass="DetailViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QDh-9P-zXh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7oX-Ze-tkT">
-                                <rect key="frame" x="10" y="30" width="355" height="169"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lm-9X-36C">
-                                <rect key="frame" x="16" y="233" width="343" height="414"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1f-8R-Naf">
+                                <rect key="frame" x="10" y="306" width="365" height="118"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="118" id="F5C-d7-aNr"/>
+                                </constraints>
+                                <string key="text">Latvia will soon launch its COVID-19 tracing application. It will be the first app in the country to use the Apple-Google API for contact tracing. The name of the App is Apturi COVID – Stop COVID. The app will be based on the tools that were released as a bet…", publisher: "iLounge", author: "Samantha Wiley</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Oso-SF-6IM">
+                                <rect key="frame" x="10" y="264" width="355" height="42"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Apple Releases The New Phone" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yW-DZ-M1b">
+                                        <rect key="frame" x="0.0" y="0.0" width="229.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicago Tribune" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivj-Yu-hnD">
+                                        <rect key="frame" x="0.0" y="26" width="345" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ivj-Yu-hnD" firstAttribute="top" secondItem="8yW-DZ-M1b" secondAttribute="bottom" constant="8" id="rwH-Px-vNk"/>
+                                    <constraint firstAttribute="trailing" secondItem="ivj-Yu-hnD" secondAttribute="trailing" constant="10" id="zTO-K8-EbV"/>
+                                </constraints>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4oQ-9i-L2d">
+                                <rect key="frame" x="10" y="87" width="365" height="165"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="169.5" id="JCk-UR-gC2"/>
+                                </constraints>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaj-X4-0b5">
+                                <rect key="frame" x="0.0" y="41" width="375" height="55"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Apple Releases New Phone" id="hgn-OY-UC0"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="8lm-9X-36C" firstAttribute="top" secondItem="7oX-Ze-tkT" secondAttribute="bottom" constant="34" id="Nj6-jq-8Y2"/>
-                            <constraint firstAttribute="bottom" secondItem="8lm-9X-36C" secondAttribute="bottom" constant="20" symbolic="YES" id="V45-Y5-WvW"/>
-                            <constraint firstItem="8lm-9X-36C" firstAttribute="centerX" secondItem="7oX-Ze-tkT" secondAttribute="centerX" id="Wu3-e4-irK"/>
-                            <constraint firstItem="7oX-Ze-tkT" firstAttribute="leading" secondItem="PUJ-yg-cy4" secondAttribute="leading" constant="10" id="bNW-lh-2I6"/>
-                            <constraint firstItem="8lm-9X-36C" firstAttribute="leading" secondItem="QDh-9P-zXh" secondAttribute="leadingMargin" id="btl-we-GEg"/>
-                            <constraint firstItem="7oX-Ze-tkT" firstAttribute="top" secondItem="PUJ-yg-cy4" secondAttribute="top" constant="30" id="hdi-eX-2ly"/>
-                            <constraint firstItem="PUJ-yg-cy4" firstAttribute="trailing" secondItem="7oX-Ze-tkT" secondAttribute="trailing" constant="10" id="qyg-aE-oC2"/>
-                            <constraint firstItem="PUJ-yg-cy4" firstAttribute="bottom" secondItem="7oX-Ze-tkT" secondAttribute="bottom" constant="419" id="v1z-43-Jxq"/>
+                            <constraint firstItem="4oQ-9i-L2d" firstAttribute="leading" secondItem="M1f-8R-Naf" secondAttribute="leading" id="3WZ-Na-dYW"/>
+                            <constraint firstItem="jaj-X4-0b5" firstAttribute="leading" secondItem="QDh-9P-zXh" secondAttribute="leading" symbolic="YES" id="9ao-bS-NpZ"/>
+                            <constraint firstItem="PUJ-yg-cy4" firstAttribute="trailing" secondItem="Oso-SF-6IM" secondAttribute="trailing" constant="10" id="ChE-vm-r0d"/>
+                            <constraint firstItem="M1f-8R-Naf" firstAttribute="top" secondItem="Oso-SF-6IM" secondAttribute="bottom" id="EFp-O0-3Jn"/>
+                            <constraint firstItem="M1f-8R-Naf" firstAttribute="leading" secondItem="PUJ-yg-cy4" secondAttribute="leading" constant="10" id="OfD-hA-q6R"/>
+                            <constraint firstItem="4oQ-9i-L2d" firstAttribute="trailing" secondItem="M1f-8R-Naf" secondAttribute="trailing" id="QM6-XJ-Ihb"/>
+                            <constraint firstItem="Oso-SF-6IM" firstAttribute="leading" secondItem="4oQ-9i-L2d" secondAttribute="leading" id="Tkk-Bo-0tE"/>
+                            <constraint firstItem="Oso-SF-6IM" firstAttribute="top" secondItem="4oQ-9i-L2d" secondAttribute="bottom" constant="10" id="Vow-e7-yRM"/>
+                            <constraint firstItem="4oQ-9i-L2d" firstAttribute="top" secondItem="jaj-X4-0b5" secondAttribute="bottom" constant="-11.5" id="Z2e-rf-LAn"/>
+                            <constraint firstItem="PUJ-yg-cy4" firstAttribute="trailing" secondItem="M1f-8R-Naf" secondAttribute="trailing" id="Zx0-HC-q74"/>
+                            <constraint firstAttribute="trailing" secondItem="jaj-X4-0b5" secondAttribute="trailing" symbolic="YES" id="bFl-pI-X1g"/>
+                            <constraint firstItem="jaj-X4-0b5" firstAttribute="top" secondItem="QDh-9P-zXh" secondAttribute="top" constant="41" id="cBJ-TK-pIn"/>
+                            <constraint firstItem="4oQ-9i-L2d" firstAttribute="top" secondItem="PUJ-yg-cy4" secondAttribute="top" constant="-11.5" id="jpa-5h-AnS"/>
+                            <constraint firstItem="Oso-SF-6IM" firstAttribute="leading" secondItem="PUJ-yg-cy4" secondAttribute="leading" constant="10" id="kYL-Ki-vjc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PUJ-yg-cy4"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="News Details" largeTitleDisplayMode="always" id="2KQ-f8-bem"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="ImageView" destination="4oQ-9i-L2d" id="RDt-52-I8u"/>
+                        <outlet property="TitleLabel" destination="8yW-DZ-M1b" id="KO0-eL-IBH"/>
+                        <outlet property="detailText" destination="M1f-8R-Naf" id="P3X-4q-wbA"/>
+                        <outlet property="navItem" destination="hgn-OY-UC0" id="VbW-xq-uV2"/>
+                        <outlet property="publisherLabel" destination="ivj-Yu-hnD" id="IWf-jx-WoF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i7T-kY-D0K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1937" y="120"/>
+            <point key="canvasLocation" x="1936.8" y="119.1904047976012"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pencil" catalog="system" width="64" height="56"/>
+    </resources>
 </document>

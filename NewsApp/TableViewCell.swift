@@ -28,6 +28,8 @@ class TableViewCell: UITableViewCell {
     func configure(with model: Article){
                self.newsTitleLabel.text = model.title
                self.newsPublisherLabel.text = model.publisher
+                self.selectionStyle = .none //Removed the stained colour of the tablerowcell
+
            }
     
 }
