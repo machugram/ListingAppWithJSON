@@ -20,57 +20,21 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         cell.configure(with: news[indexPath.row])
-        //cell.newsTitleLabel?.text = news[indexPath.row].title//idArray[indexPath.row]
-        //cell.newsPublisherLabel?.text = news[indexPath.row].publisher//idArray[indexPath.row]
-
         return cell
     }
-    
-    
-    
     
     @IBOutlet weak var tableView :UITableView!
     var news =  [Article]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         getNewsResult()
         tableView.register(TableViewCell.nib(), forCellReuseIdentifier: TableViewCell.identifier)
-        //parse()
-        // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
     }
     
 // Field
-    
-     //This funstion was used for the local json file
-//    func parse (){
-//
-//        let url = Bundle.main.url(forResource: "data", withExtension: "json")
-//        if let url = url {
-//
-//            let data = try? Data(contentsOf: url)
-//            do {
-//                guard let data = data
-//                    else{return}
-//                let news = try JSONDecoder().decode(News.self, from: data)
-//                self.news = news.articles
-//                //print("news:",news)
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//                let newsArray = news.articles
-//                //print("newsArray:",newsArray)
-//            } catch let error {
-//                print(error)
-//            }
-//        }
-//
-//
-//    }
     
    func getNewsResult(){
     let url = URL(string: "https://learnappmaking.com/ex/news/articles/Apple?secret=CHWGk3OTwgObtQxGqdLvVhwji6FsYm95oe87o3ju")!
@@ -82,14 +46,10 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                     print("Something went wrong")
                     return
             }
-            //var json: News?
             do {
                 let fetchedData = try JSONDecoder().decode(News.self, from: data)
                 self.news = fetchedData.articles
-                //if let count = fetchedData["count"] as? Int{print(count)}
-               // print("decoded:",fetchedData)
                 let newsArray = fetchedData.articles
-                //print(newsArray)
             }
             catch {
                print("error: \(error)")
@@ -103,19 +63,8 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     }
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "showDetails", sender: self)
-        //Show news details
-        let article = news[indexPath.row]
-        //print(article)
-     //let vc = storyboard?.instantiateViewController(withIdentifier: "DetailView") as? DetailViewController
-       // self.navigationController?.pushViewController(vc!, animated: true)
-
-//        vc?.detailViewController()
-//        present(vc!, animated: true)
-        //print("Cell row selected")
-        
-//
+        let article = news[indexPath.row]   //Show news details
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -124,16 +73,9 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     }
 
     
-    
-    
     }
     
-    
-    //Table
-    
-    
-    
-    
+
 
 struct News : Codable{
     let count: Int

@@ -19,27 +19,31 @@ class DetailViewController: UIViewController {
     var article: Article?
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailText.text = article?.text
-        navItem.title = article?.title
-        navItem.titleView?.sizeToFit()
-        TitleLabel.text = article?.title
-        publisherLabel.text = article?.publisher
-        let urlKey = article?.image
-        if let url = URL(string: urlKey!){
+    let urlKey = article?.image
+    detailText.text = article?.text
+    navItem.title = setNavTitle(title: article!.title)
+    navItem.titleView?.sizeToFit()
+    TitleLabel.text = article?.title
+    publisherLabel.text = article?.publisher
+    if let url = URL(string: urlKey!){
             do {
                let data =  try Data(contentsOf: url)
                 self.ImageView.image = UIImage(data: data)
-                //print(data)
             } catch let error {
                 print("error",error)
             }
         }
-        
-                //Image View is  done
-        //Wanting to make UILabelclickable for link url
             }
         
-        
+    
+    func setNavTitle(title: String) -> String
+    {
+        //get the first 25 characters of your title, change the number to your need
+        let first25 = title.substring(to: title.index(title.startIndex, offsetBy: 25))
+        //concatenate the strings
+        let title = first25 + " ... "
+        return title
+    }
         
         // Do any additional setup after loading the view.
     }
